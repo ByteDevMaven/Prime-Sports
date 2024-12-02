@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Sports</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/error.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <a href="/index.html" class="logo">
+                <img src="favicon/favicon.ico" alt="PS" class="logo-icon"> Prime Sports
+            </a>
+            <div class="nav-right">
+                <div class="search-container">
+                    <input type="text" placeholder="Buscar Estilo..." id="search-input">
+                    <button type="button" id="search-button" onclick="searchProducts()">&#x1F50D;</button>
+                </div>
+                <button type="button" id="cart-button">
+                    <span id="cart-icon">&#x1F6D2;</span>
+                    <span id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header id="promo">
+        <div class="container text-primary">
+            <h1>Bienvenido a Prime Sports</h1>
+            <div class="slideshow">
+                <p class="slide">Descubre el par perfecto para tu viaje como atleta profesional.</p>
+                <p class="slide">¡Ofertas especiales solo por tiempo limitado!</p>
+                <p class="slide">Únete a nuestra comunidad de atletas.</p>
+                <p class="slide">Impulsa tu rendimiento con la mejor tecnología en tenis.</p>
+                <p class="slide">Diseños exclusivos para quienes exigen lo mejor.</p>
+                <p class="slide">Lleva tu entrenamiento al siguiente nivel con comodidad y estilo.</p>
+                <p class="slide">Tu pasión, nuestros tenis. ¡Corre hacia el éxito!</p>
+                <p class="slide">Descubre los tenis que se adaptan a tu ritmo.</p>
+                <p class="slide">Cada paso cuenta. Elige calidad, elige confianza.</p>
+                <p class="slide">Renueva tu estilo deportivo con nuestra última colección.</p>
+                <p class="slide">Innovación y confort para deportistas comprometidos.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="loader" class="loader-container hidden">
+            <div class="loader"></div>
+        </div>
+
+        <div id="error-container" class="error-container hidden">
+            <h2>Oops! Something went wrong</h2>
+            <p id="error-message"></p>
+            <button type="button" id="retry-button" class="btn btn-primary">Retry</button>
+        </div>
+
+        <div id="product-list" class="product-grid"></div>
+
+        <div id="pagination" class="pagination">
+            <button type="button" id="prev-page" class="btn">Anterior</button>
+            <div id="pagination-numbers" class="pagination-numbers"></div>
+            <button type="button" id="next-page" class="btn">Siguiente</button>
+            <span id="page-info" class="hidden"></span>
+        </div>
+
+        <dialog id="cart-dialog">
+            <h2>Tu Carrito de Compras</h2>
+            <div id="cart-items"></div>
+            <div id="cart-total">Total: $0.00</div>
+            <button type="button" id="checkout-button" class="btn btn-primary">Proceder a Pagar</button>
+            <button type="button" id="close-cart" class="btn btn-secondary">Cerrar</button>
+        </dialog>
+
+        <div id="checkout" class="hidden">
+            <h2>Detalles de Pedido</h2>
+            <form id="checkout-form" method="post">
+                <div class="form-group">
+                    <label for="name">Nombre Completo</label>
+                    <input type="text" id="name" name="name" autocomplete="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Dirreccion</label>
+                    <input type="text" id="address" name="address" autocomplete="street-address" required>
+                </div>
+                <div class="form-group">
+                    <label for="dni">DNI</label>
+                    <input type="text" id="dni" name="dni" placeholder="0101200900918 o 0101-2009-00918"
+                        autocomplete="on" maxlength="15" required>
+                </div>
+                <div id="checkout-total">Total: $0.00</div>
+                <button type="submit" class="btn btn-primary" id="submit">Confirmar Orden</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Prime Sports. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Image Preview Modal -->
+    <div id="image-preview-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="preview-image" src="" alt="Preview">
+            <div id="preview-details">
+                <h2 id="preview-title"></h2>
+                <p id="preview-description"></p>
+                <p id="preview-price"></p>
+                <div class="size-selector-container">
+                    <label for="size-selector">Select Size:</label>
+                    <select id="size-selector">
+                        <!-- Size options will be dynamically added here -->
+                    </select>
+                </div>
+                <button type="button" id="add-to-favorites" class="btn btn-secondary">Agregar a Favoritos</button>
+                <button type="button" id="add-to-cart" class="btn btn-primary">Agregar al Carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
+    <script src="js/ui.js" defer></script>
+    <script src="js/notifications.js" defer></script>
+    <script src="js/pagination.js" defer></script>
+
+    <!-- Initialize Products and Cart -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchProducts();   // Initialize products
+            updateCartCount(); // Initialize cart
+        });
+    </script>
+
+</body>
+
+</html>
