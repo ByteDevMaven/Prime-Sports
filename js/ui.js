@@ -13,10 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
         // Add the active class to the new current slide
         slides[currentIndex].classList.add("active");
     }, 3000); // Change slide every 3 seconds
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    menuToggle.addEventListener('click', function () {
+        navMenu.classList.toggle('active');
+    });
 });
 
 function openImagePreview(productId) {
     const product = products.find(p => p.id === productId);
+    const favoriteIds = getFavorites();
+    
     if (!product) {
         console.error('Product not found');
         return;
@@ -30,6 +39,10 @@ function openImagePreview(productId) {
     const sizeSelector = document.getElementById('size-selector');
     const addToCartButton = document.getElementById('add-to-cart');
     const addToFavoritesButton = document.getElementById('add-to-favorites');
+
+    if (favoriteIds.includes(product.id)) {
+        addToFavoritesButton.classList.add('hidden');
+    }
 
     previewImage.src = product.image;
     previewImage.alt = product.name;
@@ -67,7 +80,15 @@ function openImagePreview(productId) {
         sizeSelector.appendChild(option);
     }
 
-    addToCartButton.onclick = () => addToCart(product.id);
+    addToCartButton.onclick = () => {
+        const selectedSize = sizeSelector.value; // Get the selected size
+        if (!selectedSize) {
+            alert('Por favor selecciona una talla antes de agregar al carrito.');
+            return;
+        }
+        addToCart(product.id, selectedSize); // Pass both product ID and size
+    };
+
     addToFavoritesButton.onclick = () => addToFavorites(product.id);
 
     modal.style.display = 'block';
@@ -76,6 +97,33 @@ function openImagePreview(productId) {
 document.querySelector('.close').addEventListener('click', () => {
     document.getElementById('image-preview-modal').style.display = 'none';
 });
+
+function addToFavorites(productId) {
+    // Retrieve existing favorites from the cookie
+    let favorites = getFavorites();
+
+    // Add the product ID if it’s not already in the list
+    if (!favorites.includes(productId)) {
+        favorites.push(productId);
+        saveFavorites(favorites); // Save updated favorites back to the cookie
+        showNotification(`¡Producto con ID ${productId} se agregó a favoritos!`);
+    } else {
+        showNotification('El producto ya está en favoritos.');
+    }
+}
+
+// Retrieve favorites from cookie
+function getFavorites() {
+    const favoritesCookie = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('favorites='));
+    return favoritesCookie ? JSON.parse(favoritesCookie.split('=')[1]) : [];
+}
+
+// Save favorites to cookie
+function saveFavorites(favorites) {
+    document.cookie = `favorites=${JSON.stringify(favorites)}; path=/; max-age=31536000`; // 1-year expiration
+}
 
 window.addEventListener('click', (event) => {
     const modal = document.getElementById('image-preview-modal');
