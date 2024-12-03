@@ -94,8 +94,27 @@ function renderProducts() {
     updatePagination();
 }
 
+function renderFavorites() {
+    const favList = document.getElementById('fav-list');
+    favList.innerHTML = '';
+
+    const favoriteIds = getFavorites();
+    if (favoriteIds.length === 0) {
+        favList.innerHTML = '<p>No hay productos en favoritos.</p>';
+        return;
+    }
+
+    const favoriteProducts = products.filter(product => favoriteIds.includes(product.id));
+    favoriteProducts.forEach(product => {
+        const productElement = createProductElement(product);
+        favList.appendChild(productElement);
+    });
+}
+
+
 function createProductElement(product) {
     const productElement = document.createElement('div');
+    const favoriteIds = getFavorites();
 
     productElement.className = 'product';
 
@@ -111,7 +130,15 @@ function createProductElement(product) {
         <img src="${product.image}" alt="${product.name}" onclick="openImagePreview(${product.id})">
         <h3>${product.name}</h3>
         <p>$${product.price}</p>
-        <button onclick="addToFavorites(${product.id})" class="btn btn-primary">Favoritos</button>
     `;
+
+    if (!favoriteIds.includes(product.id)) {
+        const favoritesButton = document.createElement('button');
+        favoritesButton.textContent = 'Favoritos';
+        favoritesButton.className = 'btn btn-primary';
+        favoritesButton.onclick = () => addToFavorites(product.id);
+        productElement.appendChild(favoritesButton);
+    }
+
     return productElement;
 }
