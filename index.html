@@ -17,93 +17,177 @@
 <body>
     <nav>
         <div class="container">
-            <a href="/index.html" class="logo">
-                <img src="favicon/favicon.ico" alt="PS" class="logo-icon"> Prime Sports
-            </a>
-            <div class="nav-right">
-                <div class="search-container">
-                    <input type="text" placeholder="Buscar Estilo..." id="search-input">
-                    <button type="button" id="search-button" onclick="searchProducts()">&#x1F50D;</button>
+            <div class="nav-wrapper">
+
+                <div class="nav-right">
+                    <a href="#home" class="logo">
+                        <img src="favicon/favicon.ico" alt="PS" class="logo-icon"> Prime Sports
+                    </a>
+                    <div class="search-container">
+                        <input type="text" placeholder="Buscar Estilo..." id="search-input">
+                        <button type="button" id="search-button" onclick="searchProducts()">&#x1F50D;</button>
+                    </div>
+                    <button type="button" id="cart-button">
+                        <span id="cart-icon">&#x1F6D2;</span>
+                        <span id="cart-count">0</span>
+                    </button>
+                    <button type="button" class="menu-toggle">&#9776;</button>
                 </div>
-                <button type="button" id="cart-button">
-                    <span id="cart-icon">&#x1F6D2;</span>
-                    <span id="cart-count">0</span>
-                </button>
             </div>
+            <ul class="nav-menu">
+                <li><a href="#home" onclick="toggleSection('home')">Inicio</a></li>
+                <li><a href="#about" onclick="toggleSection('about')">Sobre Nosotros</a></li>
+                <li><a href="#faq" onclick="toggleSection('faq')">FAQ</a></li>
+                <li><a href="#contact" onclick="toggleSection('contact')">Contactanos</a></li>
+                <li><a href="#fav" onclick="toggleSection('fav')">Favoritos</a></li>
+            </ul>
         </div>
     </nav>
 
-    <header id="promo">
-        <div class="container text-primary">
-            <h1>Bienvenido a Prime Sports</h1>
-            <div class="slideshow">
-                <p class="slide">Descubre el par perfecto para tu viaje como atleta profesional.</p>
-                <p class="slide">¡Ofertas especiales solo por tiempo limitado!</p>
-                <p class="slide">Únete a nuestra comunidad de atletas.</p>
-                <p class="slide">Impulsa tu rendimiento con la mejor tecnología en tenis.</p>
-                <p class="slide">Diseños exclusivos para quienes exigen lo mejor.</p>
-                <p class="slide">Lleva tu entrenamiento al siguiente nivel con comodidad y estilo.</p>
-                <p class="slide">Tu pasión, nuestros tenis. ¡Corre hacia el éxito!</p>
-                <p class="slide">Descubre los tenis que se adaptan a tu ritmo.</p>
-                <p class="slide">Cada paso cuenta. Elige calidad, elige confianza.</p>
-                <p class="slide">Renueva tu estilo deportivo con nuestra última colección.</p>
-                <p class="slide">Innovación y confort para deportistas comprometidos.</p>
+    <section id="home">
+        <header>
+            <div id="promo" class="container text-primary">
+                <h1>Bienvenido a Prime Sports</h1>
+                <div class="slideshow">
+                    <p class="slide">Descubre el par perfecto para tu viaje como atleta profesional.</p>
+                    <p class="slide">¡Ofertas especiales solo por tiempo limitado!</p>
+                    <p class="slide">Únete a nuestra comunidad de atletas.</p>
+                    <p class="slide">Impulsa tu rendimiento con la mejor tecnología en tenis.</p>
+                    <p class="slide">Diseños exclusivos para quienes exigen lo mejor.</p>
+                    <p class="slide">Lleva tu entrenamiento al siguiente nivel con comodidad y estilo.</p>
+                    <p class="slide">Tu pasión, nuestros tenis. ¡Corre hacia el éxito!</p>
+                    <p class="slide">Descubre los tenis que se adaptan a tu ritmo.</p>
+                    <p class="slide">Cada paso cuenta. Elige calidad, elige confianza.</p>
+                    <p class="slide">Renueva tu estilo deportivo con nuestra última colección.</p>
+                    <p class="slide">Innovación y confort para deportistas comprometidos.</p>
+                </div>
             </div>
+        </header>
+
+        <main class="container">
+            <div id="loader" class="loader-container hidden">
+                <div class="loader"></div>
+            </div>
+
+            <div id="error-container" class="error-container hidden">
+                <h2>Oops! Something went wrong</h2>
+                <p id="error-message"></p>
+                <button type="button" id="retry-button" class="btn btn-primary">Retry</button>
+            </div>
+
+            <div id="product-list" class="product-grid"></div>
+
+            <div id="pagination" class="pagination">
+                <button type="button" id="prev-page" class="btn">Anterior</button>
+                <div id="pagination-numbers" class="pagination-numbers"></div>
+                <button type="button" id="next-page" class="btn">Siguiente</button>
+                <span id="page-info" class="hidden"></span>
+            </div>
+    </section>
+
+    <section id="about" class="section hidden">
+        <h2>Nosotros</h2>
+        <p>Bienvenido a Prime Sports, tu destino definitivo para calzado deportivo de primera calidad. Nos apasiona
+            proporcionar a los atletas y entusiastas del deporte los zapatos de la más alta calidad para mejorar
+            su rendimiento y comodidad.</p>
+        <p>Nuestro camino comenzó con una misión simple: ofrecer una selección curada de zapatos deportivos de
+            primera categoría que se adapten a diversas actividades y preferencias. Entendemos que el par de zapatos
+            correcto puede marcar la diferencia en tus actividades deportivas, ya seas un atleta profesional o un
+            aficionado de fin de semana.</p>
+        <p>En Prime Sports, nos enorgullecemos de:</p>
+        <ul>
+            <li>Ofrecer una amplia gama de zapatos deportivos premium de marcas reconocidas</li>
+            <li>Brindar asesoramiento experto para ayudarte a encontrar el calzado perfecto para tus necesidades</li>
+            <li>Garantizar una experiencia de compra fluida, tanto en línea como en tienda</li>
+            <li>Mantenernos actualizados con las últimas innovaciones en calzado deportivo</li>
+        </ul>
+        <p>Únete a nuestra pasión por el deporte y el calzado de calidad. Deja que Prime Sports sea tu aliado para
+            alcanzar
+            tus objetivos deportivos, paso a paso.</p>
+    </section>
+
+    <section id="faq" class="section container hidden">
+        <h2>Preguntas Frecuentes</h2>
+        <div>
+            <h3>¿Realizan envíos a todo Honduras?</h3>
+            <p>Sí, enviamos nuestros productos a cualquier lugar del país.</p>
         </div>
-    </header>
-
-    <main class="container">
-        <div id="loader" class="loader-container hidden">
-            <div class="loader"></div>
+        <div>
+            <h3>¿Cuánto tiempo tarda en llegar mi pedido?</h3>
+            <p>El tiempo de entrega estimado es de 3 a 5 días hábiles.</p>
         </div>
-
-        <div id="error-container" class="error-container hidden">
-            <h2>Oops! Something went wrong</h2>
-            <p id="error-message"></p>
-            <button type="button" id="retry-button" class="btn btn-primary">Retry</button>
+        <div>
+            <h3>¿Qué métodos de pago aceptan?</h3>
+            <p>Aceptamos tarjetas de crédito, débito y transferencias bancarias.</p>
         </div>
+    </section>
 
-        <div id="product-list" class="product-grid"></div>
-
-        <div id="pagination" class="pagination">
-            <button type="button" id="prev-page" class="btn">Anterior</button>
-            <div id="pagination-numbers" class="pagination-numbers"></div>
-            <button type="button" id="next-page" class="btn">Siguiente</button>
-            <span id="page-info" class="hidden"></span>
+    <section id="contact" class="section container hidden">
+        <h2>Contáctanos</h2>
+        <p>¡Estamos aquí para ayudarte! Si tienes preguntas, inquietudes o comentarios, no dudes en comunicarte con
+            nosotros.</p>
+        <form id="contact-form">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Mensaje:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+        </form>
+        <div class="contact-info">
+            <h3>Nuestra Ubicación</h3>
+            <p>Blv Centroamerica, Edificio Centroamerica</p>
+            <h3>Teléfono</h3>
+            <p>(555) 123-4567</p>
+            <h3>Correo Electrónico</h3>
+            <p>info@primesports.com</p>
         </div>
+    </section>
 
-        <dialog id="cart-dialog">
-            <h2>Tu Carrito de Compras</h2>
-            <div id="cart-items"></div>
-            <div id="cart-total">Total: $0.00</div>
-            <button type="button" id="checkout-button" class="btn btn-primary">Proceder a Pagar</button>
-            <button type="button" id="close-cart" class="btn btn-secondary">Cerrar</button>
-        </dialog>
+    <section id="fav" class="hidden">
+        <div id="fav-list" class="product-grid"></div>
+    </section>
 
-        <div id="checkout" class="hidden">
-            <h2>Detalles de Pedido</h2>
-            <form id="checkout-form" method="post">
-                <div class="form-group">
-                    <label for="name">Nombre Completo</label>
-                    <input type="text" id="name" name="name" autocomplete="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo</label>
-                    <input type="email" id="email" name="email" autocomplete="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="address">Dirreccion</label>
-                    <input type="text" id="address" name="address" autocomplete="street-address" required>
-                </div>
-                <div class="form-group">
-                    <label for="dni">DNI</label>
-                    <input type="text" id="dni" name="dni" placeholder="0101200900918 o 0101-2009-00918"
-                        autocomplete="on" maxlength="15" required>
-                </div>
-                <div id="checkout-total">Total: $0.00</div>
-                <button type="submit" class="btn btn-primary" id="submit">Confirmar Orden</button>
-            </form>
-        </div>
+    <dialog id="cart-dialog">
+        <h2>Tu Carrito de Compras</h2>
+        <div id="cart-items"></div>
+        <div id="cart-total">Total: $0.00</div>
+        <button type="button" id="checkout-button" class="btn btn-primary">Proceder a Pagar</button>
+        <button type="button" id="close-cart" class="btn btn-secondary">Cerrar</button>
+    </dialog>
+
+    <div id="checkout" class="hidden">
+        <h2>Detalles de Pedido</h2>
+        <form id="checkout-form" method="post">
+            <div class="form-group">
+                <label for="name">Nombre Completo</label>
+                <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo</label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Dirreccion</label>
+                <input type="text" id="address" name="address" autocomplete="street-address" required>
+            </div>
+            <div class="form-group">
+                <label for="dni">DNI</label>
+                <input type="text" id="dni" name="dni" placeholder="0101200900918 o 0101-2009-00918" autocomplete="on"
+                    maxlength="15" required>
+            </div>
+            <div id="checkout-total">Total: $0.00</div>
+            <button type="submit" class="btn btn-primary" id="submit">Confirmar Orden</button>
+        </form>
+    </div>
+
     </main>
 
     <footer>
@@ -146,8 +230,18 @@
             fetchProducts();   // Initialize products
             updateCartCount(); // Initialize cart
         });
-    </script>
 
+        function toggleSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => section.classList.add('hidden'));
+            // Show the selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            if (sectionId === 'fav') {
+                renderFavorites(); // Refresh favorites list when section is shown
+            }
+        }
+    </script>
 </body>
 
 </html>
