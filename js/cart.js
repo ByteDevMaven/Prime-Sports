@@ -1,7 +1,8 @@
 let cart = [];
 
-function addToCart(productId) {
+function addToCart(productId, selectedSize) {
     const product = products.find(p => p.id === productId);
+    product.selectedSize = selectedSize;
     cart.push(product);
     updateCartCount();
     renderCart();
@@ -32,7 +33,7 @@ function renderCart() {
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
-            <span>${item.name} - $${item.price}</span>
+            <span>${item.name} - $${item.price} - Talla: ${item.selectedSize}</span>
             <button onclick="removeFromCart(${index})" class="btn">Quitar</button>
         `;
         cartItems.appendChild(cartItem);
